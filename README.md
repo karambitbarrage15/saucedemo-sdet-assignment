@@ -1,51 +1,49 @@
 # SauceDemo SDET Assignment
 
-## Overview
-
-This repository contains my submission for the SauceDemo QA/SDET assignment.
-
-The assignment includes:
-
-* Test plan
-* Manual bug report
-* Selenium automation scripts
-* Screenshots
-* Exploratory notes
-* Loom demo links
+This repo contains my work for the SauceDemo testing assignment.
 
 ---
 
-## Folder Structure
+## What I did
 
-* `docs/` → test plan and bug report
-* `screenshots/` → bug and automation screenshots
-* `tests/` → Selenium PyTest automation scripts
-* `notes/` → exploratory testing observations
+I tested the SauceDemo website by going through the normal user flow and also trying different edge cases.
 
----
+I mainly checked:
 
-## Automation Flows Covered
+* login and logout
+* products page
+* sorting
+* add to cart
+* checkout
+* session behavior
 
-The following critical flows were automated using Selenium WebDriver with PyTest:
-
-1. Valid login with `standard_user`
-2. Locked-out user validation with `locked_out_user`
-3. Add item to cart and complete checkout flow
+I also used `problem_user` to find bugs and `performance_glitch_user` to check slow loading.
 
 ---
 
-## Tools Used
+## What is included
 
-* Python 3.12
-* Selenium WebDriver
-* PyTest
-* Google Chrome
-* VS Code
-* Loom (for demo videos)
+* test plan
+* bug report
+* Selenium test scripts
+* screenshots
+* Loom videos
 
 ---
 
-## How to Run
+## Automation
+
+I wrote 3 Selenium tests:
+
+* login with valid user
+* locked user login check
+* add to cart and complete checkout
+
+All tests are passing.
+
+---
+
+## How to run
 
 Install dependencies:
 
@@ -53,49 +51,30 @@ Install dependencies:
 pip install selenium pytest
 ```
 
-Run all tests:
+Run tests:
 
 ```bash
 pytest tests -v
 ```
 
-Run individual tests:
-
-```bash
-pytest tests/test_login.py -v
-pytest tests/test_locked_user.py -v
-pytest tests/test_cart_checkout.py -v
-```
-
 ---
 
-## Test Accounts Used
+## Test users
 
-* `standard_user`
-* `locked_out_user`
-* `problem_user`
-* `performance_glitch_user`
+* standard_user
+* locked_out_user
+* problem_user
+* performance_glitch_user
 
-Password used:
+Password:
 `secret_sauce`
 
 ---
 
-## Notes
+## Note
 
-During automation execution, direct access to SauceDemo was blocked on the college Wi-Fi network in normal browser sessions.
-
-To ensure stable Selenium execution, tests were run using a personal mobile hotspot.
-
-All three required automation flows were executed successfully.
+While running automation, the site was not opening properly on my college Wi-Fi, so I used mobile hotspot to run the tests.
 
 ---
 
-## Deliverables Included
-
-* `docs/test_plan.md`
-* `docs/bug_report.md`
-* Selenium test scripts
-* screenshots
-* exploratory notes
-* Loom video links
+That’s it.
