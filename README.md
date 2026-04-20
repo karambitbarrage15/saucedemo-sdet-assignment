@@ -6,7 +6,7 @@ This repo contains my work for the SauceDemo testing assignment.
 
 ## What I did
 
-I tested the SauceDemo website by going through the normal user flow and also trying different edge cases.
+I tested the SauceDemo site by just using it like a normal user and trying different things to see what works and what breaks.
 
 I mainly checked:
 
