@@ -1,204 +1,162 @@
 # SauceDemo Test Plan
 
-## Basic Info
-
-**Name:** Aditya Chaturvedi
-**Role:** SDET
-**Website Tested:** SauceDemo
-**URL:** https://www.saucedemo.com
+I tested the SauceDemo site by just using it like a normal user and trying different things to see what breaks.
 
 ---
 
-## Objective
+## What I checked
 
-The purpose of this testing is to validate the main user journey of the SauceDemo website.
-
-I mainly focused on the most important e-commerce workflows:
+I mainly went through the basic flow:
 
 * login and logout
-* inventory page
-* product sorting
-* cart actions
-* checkout form
-* session handling
-* product navigation
-* problem_user specific bug scenarios
-* slow response behavior using performance_glitch_user
+* products page
+* sorting options
+* adding items to cart
+* checkout
+* clicking on product pages
+* refreshing and using back button
 
-The main goal is to ensure that a user can log in, browse products, add items to the cart, and complete checkout without issues.
+Also used different users to see different behavior.
 
 ---
 
-## Scope
+## Users I used
 
-### Included
+* `standard_user` → normal flow
+* `locked_out_user` → login error
+* `problem_user` → to find bugs
+* `performance_glitch_user` → slow loading
 
-* Login and logout
-* Invalid login validation
-* Locked user validation
-* Inventory page
-* Product sorting
-* Product detail navigation
-* Add to Cart / Remove from Cart
-* Cart badge updates
-* Checkout flow
-* Form field validation
-* Session checks
-* Browser back behavior
-* Performance sanity checks
-
-### Not Included
-
-* payment integration
-* backend API testing
-* database validation
-* load testing
-* security testing
-
----
-
-## Testing Types Used
-
-* Functional testing
-* Negative testing
-* Exploratory testing
-* UI validation
-* Session testing
-* Browser navigation testing
-* Basic performance sanity
-
----
-
-## Environment Used
-
-* Browser: Chrome
-* OS: Windows
-* Device: Laptop
-* Internet: normal Wi-Fi
-
----
-
-## Test Accounts Used
-
-* `standard_user`
-* `locked_out_user`
-* `problem_user`
-* `performance_glitch_user`
-
-Password used for all:
+Password was same for all:
 `secret_sauce`
 
 ---
-## All Test Scenarios
 
-### Login Scenarios
+## How I tested
 
-* Verify login with valid credentials
-* Verify login with blank username
-* Verify login with wrong password
-* Verify locked_out_user cannot log in
-* Verify error message visibility on failed login
+First I logged in using `standard_user` and checked everything step by step:
 
-### Session Scenarios
+* login works
+* products load
+* sorting works
+* add to cart works
+* checkout works
+* logout works
 
-* Verify session remains active after browser refresh
-* Verify logout redirects user to login page
-* Verify browser back after logout does not expose inventory page
-* Verify direct access to inventory page after logout is blocked
+After that I switched to `problem_user` and just started clicking around more randomly.
 
-### Inventory Scenarios
+That’s where most of the bugs showed up.
 
-* Verify all products are visible after login
-* Verify each product image matches the correct item
-* Verify product names and prices are displayed
-* Verify product detail page opens correctly
-* Verify browser back from product detail returns to inventory
-
-### Sorting Scenarios
-
-* Verify Name A-Z sorting
-* Verify Name Z-A sorting
-* Verify Price low to high sorting
-* Verify Price high to low sorting
-
-### Cart Scenarios
-
-* Verify Add to Cart works for every product
-* Verify Remove button works correctly
-* Verify cart badge updates on add/remove
-* Verify correct product is visible in cart
-* Verify multiple items can be added
-
-### Checkout Scenarios
-
-* Verify checkout form accepts valid input
-* Verify first name field works correctly
-* Verify last name field works correctly
-* Verify zip code field accepts input
-* Verify checkout overview shows correct selected items
-* Verify checkout completion flow works
-
-### Exploratory / Problem User Scenarios
-
-* Verify product image mismatch issues
-* Verify product title opens correct item
-* Verify product click does not log out user
-* Verify all Add to Cart buttons respond correctly
-* Verify checkout form fields behave correctly
-
-### Performance Scenarios
-
-* Verify inventory loads with acceptable delay for performance_glitch_user
-* Verify product detail navigation delay
-* Verify back navigation from detail page
-
-
-## Testing Approach
-
-I first tested the normal user flow using `standard_user` to validate login, session behavior, sorting, and logout.
-
-After the basic flow was stable, I moved to `problem_user` for deeper exploratory testing. Most bugs were found in:
-
-* product image mapping
-* Add to Cart functionality
-* checkout form fields
-* wrong product detail navigation
-* unexpected logout on product click
-
-I also used `performance_glitch_user` for a quick sanity check to observe slower navigation and delayed back transitions.
+Then I used `performance_glitch_user` just to see if things load slowly or break.
 
 ---
 
-## Risk Areas I Focused On
+## Things I tried
 
-The areas that appeared most risky during testing were:
+### Login
 
-* product image mapping
-* checkout form input fields
-* Add to Cart button behavior
-* product title navigation
-* session stability
-* browser back flow
-* performance delays
+* login with correct details
+* login with empty fields
+* wrong password
+* locked user
 
 ---
 
-## Exit Criteria
+### After login
 
-Testing is considered complete after:
-
-* all major user flows are covered
-* at least 5 bugs are documented
-* critical risky areas are validated
-* main flows are ready for automation
+* refresh page
+* logout
+* press back after logout
+* try opening inventory after logout
 
 ---
 
-## Final Deliverables
+### Products page
 
-* `test_plan.md`
-* `bug_report.md`
+* check all products visible
+* check images
+* check names and prices
+* click products
+
+---
+
+### Sorting
+
+* tried A-Z
+* tried Z-A
+* tried price sorting
+
+Also checked if anything actually changes on screen.
+
+---
+
+### Cart
+
+* add items
+* remove items
+* check cart badge
+* open cart and verify items
+
+---
+
+### Checkout
+
+* fill first name
+* fill last name
+* fill zip code
+* continue checkout
+
+---
+
+### Extra testing (problem_user)
+
+This is where I found most issues:
+
+* wrong images
+* add to cart not working
+* wrong product page opening
+* sorting not changing anything
+* checkout field issue
+
+---
+
+### Performance check
+
+With `performance_glitch_user`:
+
+* pages were slower
+* navigation delay
+* back button delay
+
+---
+
+## What looked risky
+
+While testing, these parts looked most broken:
+
+* product images
+* add to cart
+* checkout form
+* product navigation
+* sorting
+* session behavior
+
+---
+
+## When I stopped
+
+I stopped after:
+
+* main flow was tested
+* bugs were found
+* everything important was covered
+
+---
+
+## Final output
+
+* test plan
+* bug report
 * screenshots
-* Selenium automation scripts
-* `README.md`
-* Loom video links
+* Selenium tests
+* Loom videos

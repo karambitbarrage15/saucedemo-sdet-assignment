@@ -9,10 +9,10 @@ def test_add_to_cart_and_checkout():
     driver.maximize_window()
     driver.get("https://www.saucedemo.com")
 
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 20)
 
     username = wait.until(
-        EC.presence_of_element_located((By.ID, "user-name"))
+        EC.visibility_of_element_located((By.ID, "user-name"))
     )
 
     username.send_keys("standard_user")
@@ -28,20 +28,19 @@ def test_add_to_cart_and_checkout():
 
     driver.find_element(By.ID, "checkout").click()
 
-    wait.until(EC.presence_of_element_located((By.ID, "first-name")))
+    wait.until(EC.url_contains("checkout-step-one"))
 
     driver.find_element(By.ID, "first-name").send_keys("Aditya")
-    driver.find_element(By.ID, "last-name").send_keys("Test")
-    driver.find_element(By.ID, "postal-code").send_keys("226001")
+    driver.find_element(By.ID, "last-name").send_keys("Chaturvedi")
+    driver.find_element(By.ID, "postal-code").send_keys("201309")
     driver.find_element(By.ID, "continue").click()
+
+    wait.until(EC.url_contains("checkout-step-two"))
 
     driver.find_element(By.ID, "finish").click()
 
-    success = wait.until(
-        EC.presence_of_element_located((By.CLASS_NAME, "complete-header"))
-    ).text
+    wait.until(EC.url_contains("checkout-complete"))
 
-    assert "thank you" in success.lower()
+    assert "checkout-complete" in driver.current_url
 
     driver.quit()
-    

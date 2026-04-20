@@ -1,116 +1,110 @@
 # SauceDemo Bug Report
 
-## Bug 1 — Same image shown for all products
+I tested the website using `problem_user` and just went through the normal user flow like checking products, adding to cart and doing checkout. While doing that I found these issues.
 
-**Severity:** High
-**Module:** Inventory
+---
 
-**Steps to reproduce**
+## Bug 1 - Same image on all products
 
-1. Login using `problem_user`
+When I opened the products page, the first thing I noticed was that every product had the same dog image.
+
+Like backpack, bike light, jacket, everything was showing that same image.
+
+Steps:
+
+1. Login with `problem_user`
 2. Open products page
-3. Check product images
+3. Look at product images
 
-**Expected**
-Every product should have its own correct image.
+What I saw:
+All products have same image.
 
-**Observed**
-All products are showing the same dog image.
-
-**Why this matters**
-This can confuse users and they may end up buying the wrong item.
+What should happen:
+Each product should show its own image.
 
 ---
 
-## Bug 2 — Add to Cart not working for some products
+## Bug 2 - Add to cart not working for some items
 
-**Severity:** High
-**Module:** Inventory / Cart
+I tried clicking add to cart for all products.
 
-**Affected products**
+For Bolt T-Shirt, Fleece Jacket and Test.allTheThings shirt, the button just didn’t work.
 
-* Sauce Labs Bolt T-Shirt
-* Sauce Labs Fleece Jacket
-* Test.allTheThings() T-Shirt
+I clicked multiple times but nothing happened.
 
-**Steps**
+Steps:
 
 1. Login with `problem_user`
-2. Click **Add to cart** for the above products
+2. Click Add to cart on those products
 
-**Expected**
-Item should get added and button should change to Remove.
+What I saw:
+Item is not added at all.
 
-**Observed**
-Nothing happens on click.
-
-**Impact**
-User cannot add some products to cart.
+What should happen:
+Item should get added to cart.
 
 ---
 
-## Bug 3 — Last name field is broken in checkout
+## Bug 3 - Last name field issue in checkout
 
-**Severity:** Critical
-**Module:** Checkout
+During checkout I filled the first name and then tried to enter last name.
 
-**Steps**
+But the last name field was behaving weird.
 
-1. Add any item to cart
-2. Go to checkout info page
-3. Fill first name
-4. Try typing in last name field
+It was not taking input properly and it looked like it was affecting the first name field.
 
-**Expected**
-Text should appear inside last name field.
+Steps:
 
-**Observed**
-Text affects first name field and last name stays empty.
+1. Add any item
+2. Go to checkout
+3. Enter first name
+4. Try entering last name
 
-**Impact**
-Checkout cannot be completed.
+What I saw:
+Last name stays empty and I get error.
+
+What should happen:
+Last name should work normally.
 
 ---
 
-## Bug 4 — Wrong product page opens on title click
+## Bug 4 - Wrong product page opens
 
-**Severity:** High
-**Module:** Product Navigation
+I clicked on product titles to check their pages.
 
-**Steps**
+Some of them were opening different product pages.
+
+Like clicking backpack sometimes opened fleece jacket page.
+
+Steps:
 
 1. Login with `problem_user`
-2. Click product titles one by one
+2. Click on product titles
 
-**Observed examples**
+What I saw:
+Wrong product page opens.
 
-* Backpack → opens Fleece Jacket
-* Bolt T-Shirt → opens Onesie
-* Test.allTheThings() → opens Backpack
-
-**Expected**
-Clicked product should open its own detail page.
-
-**Impact**
-Users may see wrong product details and purchase wrong item.
+What should happen:
+Correct product page should open.
 
 ---
 
-## Bug 5 — Clicking Fleece Jacket logs out the user
+## Bug 5 - Sorting not working
 
-**Severity:** Critical
-**Module:** Navigation / Session
+I tried using all sorting options like A-Z, Z-A and price options.
 
-**Steps**
+But nothing actually changed.
+
+The order of products stayed exactly same.
+
+Steps:
 
 1. Login with `problem_user`
-2. Click **Sauce Labs Fleece Jacket**
+2. Click sort dropdown
+3. Select any option
 
-**Expected**
-Fleece Jacket details page should open.
+What I saw:
+No change in product order.
 
-**Observed**
-User gets redirected to login page.
-
-**Impact**
-Shopping flow breaks and user session is lost.
+What should happen:
+Products should reorder based on selection.
